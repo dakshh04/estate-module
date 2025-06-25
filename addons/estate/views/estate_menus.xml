@@ -16,15 +16,15 @@
         action="estate_property_action"
         sequence="10"/>
 
-    <menuitem id="menu_estate_property_type" 
+    <!-- <menuitem id="menu_estate_property_type" 
         name="Property Types" 
         parent="estate_root_menu" 
-        action="action_estate_property_type"/>
+        action="action_estate_property_type"/> -->
 
-    <menuitem id="menu_estate_property_list"
+    <!-- <menuitem id="menu_estate_property_list"
         name="Properties List"
         parent="menu_estate_property_type"
-        action="action_estate_property_list"/>
+        action="action_estate_property_list"/> -->
 
     <menuitem id="estate_menu_configuration" 
         name="Configuration" 
