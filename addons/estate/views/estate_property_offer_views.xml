@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_estate_property_offer_list" model="ir.ui.view">
+        <field name="name">estate.property.offer.list</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <list editable="top">
+                <field name="price" width="33%"/>
+                <field name="partner_id"/>
+                <field name="status"/>
+                <field name="property_type_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_estate_property_offer_form" model="ir.ui.view">
+        <field name="name">estate.property.offer.form</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="price" width="20%" 
+                            decoration-danger="status == 'offer_refused'"
+                            decoration-success="status == 'offer_accepted'"/>
+                        <field name="partner_id" width="40%" 
+                            decoration-danger="status == 'offer_refused'"
+                            decoration-success="status == 'offer_accepted'"/>
+                        <field name="status" width="33%" widget="statusbar" statusbar_visible="pending,offer_accepted,offer_refused"/>
+                        <!-- <field name="property_id" modifiers='{"invisible": true}'/> -->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

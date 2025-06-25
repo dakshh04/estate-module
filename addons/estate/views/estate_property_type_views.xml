@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- List view for estate.property -->
+    <!-- <record id="view_estate_property_list_view" model="ir.ui.view">
+        <field name="name">estate.property.list</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list string="Properties">
+                <field name="name"/>
+                <field name="expected_price"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record> -->
+
+    <!-- Form view with notebook containing list (if embedded inside another model like estate.property.type) -->
+    <!-- <record id="view_estate_property_type_form_with_notebook" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="Property Type">
+                <sheet>
+                    <notebook>
+                        <page string="Properties">
+                            <field name="property_ids" mode="list" nolabel="1" readonly="1" context="{'create': False, 'edit': False}">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="expected_price"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record> -->
+
+    <record id="view_estate_property_list_updated" model="ir.ui.view">
+        <field name="name">estate.property.list.updated</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <list string="Estate Properties">
+                <field name="name"/>
+                <field name="expected_price"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_property_type_form" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- Stat button -->
+                    <button name="%(action_offers_by_property_type)d"
+                        type="action"
+                        string="Offers"
+                        icon="fa-envelope"
+                        context="{'default_property_type_id': id}"
+                        domain="[('property_type_id', '=', id)]"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="offer_count" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

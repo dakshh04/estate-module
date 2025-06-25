@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Search View -->
+    <record id="view_estate_property_search" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Search Estate Properties">
+                <field name="name" string="Property Name"/>
+
+                <filter name="available" string="Available" domain="[('state','=','new')]"/>
+                <filter name="sold" string="Sold" domain="[('state','=','sold')]"/>
+                <filter name="garden" string="Has Garden" domain="[('garden','=',True)]"/>
+                <field name="living_area" string="Min Living Area" filter_domain="[('living_area', '>=', self)]"/>
+
+                <group expand="1" string="Group By">
+                    <filter name="group_by_type" string="Property Type" context="{'group_by': 'property_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_estate_property_list" model="ir.ui.view">
+        <field name="name">estate.property.list</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list string="Estate Properties">
+              
+                <!-- <field name="name" width="9%"
+                    decoration-success="[('offer_received', '=', True)]"
+                    decoration-bold="[('offer_accepted', '=', True)]"
+                    decoration-muted="[('is_sold', '=', True)]"/> -->
+                
+                <field name="name" width="9%"/>
+                <field name="postcode" width="9%"  />
+                <field name="date_availability" width="10%" optional="hide"/>
+                <field name="expected_price" width="9%"  />
+                <field name="selling_price" width="9%"  />
+                <field name="bedrooms" width="9%"  />
+                <field name="living_area" width="9%"  />
+                <field name="property_type_id" width="9%"  />
+                <field name="tag_ids" widget="many2many_tags" width="9%" />
+                <field name="validity" width="9%"/>
+                <field name="date_deadline" width="9%"/>
+
+                
+                <!-- <field name="offer_received" invisible="1" optional="hide"/>
+                <field name="offer_accepted" invisible="1" optional="hide"/>
+                <field name="state" invisible="1" optional="hide"/>
+                <field name="is_sold" invisible="1" optional="hide"/> -->
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_estate_property_form_custom" model="ir.ui.view">
+        <field name="name">estate.property.form.custom</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="Estate Property">
+                <header>
+                    <button name="button_cancel" type="object" string="Cancel" 
+                        modifiers='{"invisible": [["state", "=", "cancelled"]]}' class="oe_highlight"/>
+                    <button name="button_sold" type="object" string="Sold" 
+                        modifiers='{"invisible": [["state", "=", "sold"]]}' class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_refused,offer_accepted,sold,cancelled"/>
+                </header>
+                <!-- Name with bold and large font -->
+                <sheet>
+                    <div style="font-size: 40px; font-weight: 900; margin-bottom: 4px;">
+                        <field name="name" class="oe_inline" options="{'no_label': True}" />
+                    </div>
+                    <group>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" nolabel="1" style="margin-bottom: 20px;"/>
+                    </group>
+
+                    <!-- Two-column layout -->
+                    <group>
+                        <group>
+                            <field name="postcode"/>
+                            <field name="date_availability"/>
+                        </group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+                            <field name="best_price" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <!-- Notebook for description and other fields -->
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <field name="sequence"/>
+                                <field name="description"/>
+                                <field name="bedrooms"/>
+                                <field name="living_area"/>
+                                <field name="facades"/>
+                                <field name="garage"/>
+                                <field name="garden"/>
+                                <field name="garden_area"/>
+                                <field name="total_area" readonly="1"/>
+                                <field name="garden_orientation"/>
+                                <field name="property_type_id"/>
+                                <field name="validity"/>
+                                <field name="date_deadline"/>
+                            </group>
+                        </page>
+
+                        <page string="Sales Info">
+                            <group>
+                                <field name="salesperson_id"/>
+                                <field name="buyer_id"/>
+                            </group>
+                        </page>
+
+                        <page string="Offers">
+                            <field name="offer_ids" context="{'default_property_id': id}">
+                                <list editable="bottom">
+                                    <field name="price" width="20%"/>
+                                    <field name="partner_id" width="40%"/>
+                                    <field name="status" widget="statusbar" readonly="1" width="20%"/>
+                                    <button name="button_accept" type="object" icon="fa-check" string="Accept" class="btn-primary" width="10%">
+                                        <attribute name="invisible">status != 'pending'</attribute>
+                                    </button>
+                                    <button name="button_refuse" type="object" icon="fa-times" string="Refuse" class="btn-secondary" width="10%">
+                                        <attribute name="invisible">status != 'pending'</attribute>
+                                    </button>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
