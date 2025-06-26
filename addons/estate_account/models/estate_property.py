@@ -3,9 +3,9 @@ from odoo import models
 class EstateProperty(models.Model):
     _inherit = 'estate.property'
 
-    def action_sold(self):
+    def button_sold(self):
         # Debug statement to verify override works
-        print("action_sold overridden in estate_account")
+        print("Hello World!!!")
 
-        res = super().action_sold()
+        res = super().button_sold()
         return res
