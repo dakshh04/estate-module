@@ -7,5 +7,5 @@
     'summary': 'Accounting integration for the Estate module',
     'description': 'This module links the Estate module with the Accounting module.',
     'installable': True,
-    'application': False,
+    'application': True,
 }
