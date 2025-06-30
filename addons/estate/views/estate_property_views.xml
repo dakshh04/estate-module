@@ -141,12 +141,46 @@
         <field name="name">estate.property.kanban</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban class="o_kanban_view" default_group_by="state">
                 <field name="name"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="best_price"/>
+                <field name="tag_ids"/>
+                <field name="state"/>
+
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click o_kanban_record">
-                            <strong><field name="name"/></strong>
+                            <!-- Property Name -->
+                            <div class="o_kanban_card_header">
+                                <strong><field name="name"/></strong>
+                            </div>
+
+                            <!-- Price Info -->
+                            <div class="o_kanban_card_body">
+                                <p>Expected Price: <field name="expected_price"/></p>
+                                <t t-if="record.state.raw_value == 'offer_received'">
+                                    <p>Best Offer: <field name="best_price"/></p>
+                                </t>
+                                <t t-if="record.state.raw_value == 'sold'">
+                                    <p>Selling Price: <field name="selling_price"/></p>
+                                </t>
+                            </div>
+
+                            <!-- Tags -->
+                            <div t-if="record.tag_ids.raw_value" class="o_kanban_tags mb-2">
+                                <t t-foreach="record.tag_ids.raw_value" t-as="tag">
+                                    <span class="o_tag">
+                                        <t t-esc="tag[1]"/>
+                                    </span>
+                                </t>
+                            </div>
+
+                            <!-- Test -->
+                            <div t-if="record.state.raw_value == 'new'">
+                                This is new!
+                            </div>
                         </div>
                     </t>
                 </templates>
