@@ -141,7 +141,11 @@
         <field name="name">estate.property.kanban</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_view" default_group_by="state">
+            <kanban class="o_kanban_view"
+                default_group_by="selling_price"
+                group_create="false"
+                disable_drag_drop="1">
+
                 <field name="name"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>

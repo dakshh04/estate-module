@@ -1,3 +1,5 @@
+version: "3.1"
+
 services:
   odoo:
     image: odoo:18
@@ -8,11 +10,15 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./addons:/mnt/extra-addons
+      - ./addons/tutorials:/mnt/tutorials
     environment:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
- 
+    command: >
+      odoo
+      --addons-path=/mnt/extra-addons,/mnt/tutorials,/usr/lib/python3/dist-packages/odoo/addons
+
   db:
     image: postgres:15
     environment:
@@ -21,8 +27,7 @@ services:
       - POSTGRES_PASSWORD=odoo
     volumes:
       - odoo-db-data:/var/lib/postgresql/data
- 
+
 volumes:
   odoo-web-data:
   odoo-db-data:
-
