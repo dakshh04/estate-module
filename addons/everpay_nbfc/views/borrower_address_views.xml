@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_borrower_address_form" model="ir.ui.view">
+        <field name="name">borrower.address.form</field>
+        <field name="model">bank.loan.borrower.address</field>
+        <field name="arch" type="xml">
+            <form string="Borrower Address">
+                <sheet>
+                    <group>
+                        <field name="address"/>
+                        <field name="type"/>
+                        <field name="is_verified"/>
+                        <field name="lead_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View (Odoo 18+) -->
+    <record id="view_borrower_address_list" model="ir.ui.view">
+        <field name="name">borrower.address.list</field>
+        <field name="model">bank.loan.borrower.address</field>
+        <field name="arch" type="xml">
+            <list string="Borrower Addresses">
+                <field name="address"/>
+                <field name="type"/>
+                <field name="is_verified"/>
+                <field name="lead_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_borrower_address" model="ir.actions.act_window">
+        <field name="name">Borrower Addresses</field>
+        <field name="res_model">bank.loan.borrower.address</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_everpay_nbfc_root" name="Everpay NBFC"/>
+
+    <menuitem id="menu_borrower_address_parent" name="Borrower Management"
+              parent="menu_everpay_nbfc_root"/>
+
+    <menuitem id="menu_borrower_address" name="Borrower Addresses"
+              parent="menu_borrower_address_parent"
+              action="action_borrower_address"/>
+</odoo>
