@@ -1,7 +1,7 @@
 {
     'name': 'Everpay NBFC',
     'version': '1.0',
-    'summary': 'Manage bank loans and borrower information for NBFC',
+    'summary': 'Manage loans and borrower information for NBFC',
     'sequence': 10,
     'description': """
         Everpay NBFC Module
@@ -14,6 +14,8 @@
     'depends': ['base'],
     'data': [
         'views/borrower_address_views.xml',
+        'views/geo_tagging_views.xml',
+        'views/borrower_bank_account_views.xml',
     ],
     'installable': True,
     'application': True,

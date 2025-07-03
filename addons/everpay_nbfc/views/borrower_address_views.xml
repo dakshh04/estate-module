@@ -3,7 +3,7 @@
     <!-- Form View -->
     <record id="view_borrower_address_form" model="ir.ui.view">
         <field name="name">borrower.address.form</field>
-        <field name="model">bank.loan.borrower.address</field>
+        <field name="model">nbfc.borrower.address</field>
         <field name="arch" type="xml">
             <form string="Borrower Address">
                 <sheet>
@@ -11,23 +11,23 @@
                         <field name="address"/>
                         <field name="type"/>
                         <field name="is_verified"/>
-                        <field name="lead_id"/>
+                        <!-- <field name="lead_id"/> -->
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- List View (Odoo 18+) -->
+    <!-- List View -->
     <record id="view_borrower_address_list" model="ir.ui.view">
         <field name="name">borrower.address.list</field>
-        <field name="model">bank.loan.borrower.address</field>
+        <field name="model">nbfc.borrower.address</field>
         <field name="arch" type="xml">
             <list string="Borrower Addresses">
                 <field name="address"/>
                 <field name="type"/>
                 <field name="is_verified"/>
-                <field name="lead_id"/>
+                <!-- <field name="lead_id"/> -->
             </list>
         </field>
     </record>
@@ -35,7 +35,7 @@
     <!-- Action -->
     <record id="action_borrower_address" model="ir.actions.act_window">
         <field name="name">Borrower Addresses</field>
-        <field name="res_model">bank.loan.borrower.address</field>
+        <field name="res_model">nbfc.borrower.address</field>
         <field name="view_mode">list,form</field>
     </record>
 

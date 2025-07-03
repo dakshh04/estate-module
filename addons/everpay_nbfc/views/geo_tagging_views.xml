@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_geo_tagging_list" model="ir.ui.view">
+        <field name="name">geo.tagging.list</field>
+        <field name="model">nbfc.geo_tagging</field>
+        <field name="arch" type="xml">
+            <list string="Geo Taggings">
+                <field name="latitude" width="25%"/>
+                <field name="longitude" width="25%"/>
+                <field name="accuracy" width="25%"/>
+                <field name="address" width="25%"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_geo_tagging_form" model="ir.ui.view">
+        <field name="name">geo.tagging.form</field>
+        <field name="model">nbfc.geo_tagging</field>
+        <field name="arch" type="xml">
+            <form string="Geo Tagging">
+                <sheet>
+                    <group>
+                        <field name="latitude"/>
+                        <field name="longitude"/>
+                        <field name="accuracy"/>
+                        <field name="address"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_geo_tagging" model="ir.actions.act_window">
+        <field name="name">Geo Taggings</field>
+        <field name="res_model">nbfc.geo_tagging</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_geo_tagging" name="Geo Tagging" 
+    parent="menu_borrower_address_parent" action="action_geo_tagging"/>
+
+</odoo>
