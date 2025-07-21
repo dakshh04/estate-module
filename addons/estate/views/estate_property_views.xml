@@ -64,6 +64,10 @@
                         modifiers='{"invisible": [["state", "=", "cancelled"]]}' class="oe_highlight"/>
                     <button name="button_sold" type="object" string="Sold" 
                         modifiers='{"invisible": [["state", "=", "sold"]]}' class="oe_highlight"/>
+                    <button name="action_print_property_offers"
+                        type="object"
+                        string="Print Offers"
+                        class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_refused,offer_accepted,sold,cancelled"/>
                 </header>
                 <!-- Name with bold and large font -->
@@ -191,5 +195,4 @@
             </kanban>
         </field>
     </record>
-
 </odoo>

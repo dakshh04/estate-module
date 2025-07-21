@@ -21,6 +21,8 @@
         'views/estate_actions.xml',
         'views/estate_menus.xml',
         'views/res_users_views.xml',
+        'reports/estate_property_reports.xml',
+        'reports/estate_property_templates.xml',
     ],
     'demo': [],
     'installable': True,

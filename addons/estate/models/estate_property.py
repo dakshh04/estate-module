@@ -220,3 +220,6 @@ class EstateProperty(models.Model):
                 raise UserError(
                     f"You cannot delete property '{record.name}' unless it is in 'New' or 'Cancelled' state."
                 )
+
+    def action_print_property_offers(self):
+        return self.env.ref('estate.action_report_property_offers').report_action(self)
